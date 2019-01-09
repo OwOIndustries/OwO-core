@@ -121,6 +121,23 @@ class AudioService(object):
         """ Resume paused playback. """
         self.bus.emit(Message('mycroft.audio.service.resume'))
 
+    def seek(self, seconds=1):
+        """ seek X seconds """
+        if seconds < 0:
+            self.seek_backward(abs(seconds))
+        else:
+            self.seek_forward(seconds)
+
+    def seek_forward(self, seconds=1):
+        """ skip ahead X seconds """
+        self.bus.emit(Message('mycroft.audio.service.seek.forward',
+                              {"seconds": seconds}))
+
+    def seek_backward(self, seconds=1):
+        """ go back X seconds """
+        self.bus.emit(Message('mycroft.audio.service.seek.backward',
+                              {"seconds": seconds}))
+
     def track_info(self):
         """ Request information of current playing track.
 
