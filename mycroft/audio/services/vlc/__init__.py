@@ -120,6 +120,16 @@ class VlcService(AudioBackend):
         ret['name'] = t.get_meta(meta.Title)
         return ret
 
+    def seek_forward(self, seconds=1):
+        seconds = seconds * 1000
+        current_time = self.player.get_time()
+        self.player.set_time(current_time + seconds)
+
+    def seek_backward(self, seconds=1):
+        seconds = seconds * 1000
+        current_time = self.player.get_time()
+        self.player.set_time(current_time - seconds)
+
 
 def load_service(base_config, bus):
     backends = base_config.get('backends', [])
