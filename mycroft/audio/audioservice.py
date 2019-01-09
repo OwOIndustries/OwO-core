@@ -187,8 +187,8 @@ class AudioService(object):
         self.bus.on('mycroft.audio.service.next', self._next)
         self.bus.on('mycroft.audio.service.prev', self._prev)
         self.bus.on('mycroft.audio.service.track_info', self._track_info)
-        self.bus.on('mycroft.audio.service.seek.forward', self._seek_forward)
-        self.bus.on('mycroft.audio.service.seek.backward', self._seek_backward)
+        self.bus.on('mycroft.audio.service.seek_forward', self._seek_forward)
+        self.bus.on('mycroft.audio.service.seek_backward', self._seek_backward)
         self.bus.on('recognizer_loop:audio_output_start', self._lower_volume)
         self.bus.on('recognizer_loop:record_begin', self._lower_volume)
         self.bus.on('recognizer_loop:audio_output_end', self._restore_volume)
@@ -467,9 +467,9 @@ class AudioService(object):
         self.bus.remove('mycroft.audio.service.next', self._next)
         self.bus.remove('mycroft.audio.service.prev', self._prev)
         self.bus.remove('mycroft.audio.service.track_info', self._track_info)
-        self.bus.remove('mycroft.audio.service.seek.forward',
+        self.bus.remove('mycroft.audio.service.seek_forward',
                         self._seek_forward)
-        self.bus.remove('mycroft.audio.service.seek.backward',
+        self.bus.remove('mycroft.audio.service.seek_backward',
                         self._seek_backward)
         self.bus.remove('recognizer_loop:audio_output_start',
                         self._lower_volume)

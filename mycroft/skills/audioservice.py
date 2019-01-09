@@ -122,20 +122,33 @@ class AudioService(object):
         self.bus.emit(Message('mycroft.audio.service.resume'))
 
     def seek(self, seconds=1):
-        """ seek X seconds """
+        """
+        seek X seconds
+
+         Args:
+                seconds (int): number of seconds to seek, if negative rewind
+        """
         if seconds < 0:
             self.seek_backward(abs(seconds))
         else:
             self.seek_forward(seconds)
 
     def seek_forward(self, seconds=1):
-        """ skip ahead X seconds """
-        self.bus.emit(Message('mycroft.audio.service.seek.forward',
+        """ skip ahead X seconds
+
+         Args:
+                seconds (int): number of seconds to skip
+        """
+        self.bus.emit(Message('mycroft.audio.service.seek_forward',
                               {"seconds": seconds}))
 
     def seek_backward(self, seconds=1):
-        """ go back X seconds """
-        self.bus.emit(Message('mycroft.audio.service.seek.backward',
+        """ go back X seconds
+
+         Args:
+                seconds (int): number of seconds to rewind
+        """
+        self.bus.emit(Message('mycroft.audio.service.seek_backward',
                               {"seconds": seconds}))
 
     def track_info(self):
